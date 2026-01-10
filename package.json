@@ -1,0 +1,60 @@
+{
+  "name": "dexflow_realtime",
+  "version": "1.0.0",
+  "description": "Real-time cryptocurrency token data aggregation service with Redis caching and WebSocket support",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/server.ts",
+    "build": "tsc",
+    "postinstall": "npm run build",
+    "start": "node dist/server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
+  },
+  "keywords": [
+    "dex",
+    "aggregator",
+    "cryptocurrency",
+    "solana",
+    "websocket",
+    "realtime",
+    "redis",
+    "cache",
+    "api"
+  ],
+  "author": "Raunak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raunaksarawgi/dexflow_realtime.git"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.5",
+    "@types/ioredis": "^4.28.10",
+    "@types/node": "^24.10.1",
+    "@types/node-cron": "^3.0.11",
+    "@types/socket.io": "^3.0.1",
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "ioredis": "^5.8.2",
+    "node-cron": "^4.2.1",
+    "redis": "^5.9.0",
+    "socket.io": "^4.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
+    "eslint": "^9.39.1",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.5"
+  }
+}

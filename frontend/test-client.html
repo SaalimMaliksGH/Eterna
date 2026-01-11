@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-time DEX Aggregator</title>
+    <title>DEX Aggregator</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Real-time DEX Aggregator</h1>
+            <h1>DEX Aggregator</h1>
             <div id="status" class="status connecting">⏳ Connecting...</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalTokens">0</div>
+                <div class="stat-label">Total Tokens</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="liveUpdates">0</div>
+                <div class="stat-label">Real-time Updates</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalVolume">0</div>
+                <div class="stat-label">Total Volume (SOL)</div>
+            </div>
         </div>
 
         <div class="controls">
@@ -37,25 +52,10 @@
                 </select>
             </label>
             <button onclick="applyFilters()">Apply</button>
-            <span style="margin-left: auto; font-size: 12px; color: #6b7280; display: flex; align-items: center; gap: 5px;">
-                <span style="display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse-dot 1.5s infinite; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);"></span>
+            <span style="margin-left: auto; font-size: 13px; color: #555555; display: flex; align-items: center; gap: 6px;">
+                <span style="display: inline-block; width: 8px; height: 8px; background: #28a745; border-radius: 50%; animation: pulse-dot 1.5s infinite;"></span>
                 <span style="font-weight: 500;">Real-time streaming</span>
             </span>
-        </div>
-
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-value" id="totalTokens">0</div>
-                <div class="stat-label">Total Tokens</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="liveUpdates">0</div>
-                <div class="stat-label">Real-time Updates</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="totalVolume">0</div>
-                <div class="stat-label">Total Volume (SOL)</div>
-            </div>
         </div>
 
         <div class="tokens-container">
@@ -75,6 +75,10 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 M Saalim Malik. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

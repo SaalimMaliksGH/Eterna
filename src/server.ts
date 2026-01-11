@@ -32,8 +32,8 @@ class Server {
       credentials: true,
     }));
 
-    // Serve static files (test-client.html)
-    this.app.use(express.static('.'));
+    // Serve static files from frontend folder
+    this.app.use(express.static('frontend'));
 
     // Body parsing
     this.app.use(express.json());

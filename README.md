@@ -2,7 +2,7 @@
 
 A real-time cryptocurrency token data aggregation service that fetches meme coin data from multiple DEX (Decentralized Exchange) APIs, implements efficient caching with Redis, and provides live updates via WebSockets.
 
-Deployed here - https://dexflow-realtime.onrender.com
+Deployed here - https://eterna-dexflow.onrender.com/test-client.html
 
 ## 📋 Features
 
@@ -69,8 +69,8 @@ frontend/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/raunaksarawgi/dexflow_realtime.git
-   cd dexflow_realtime
+   git clone https://github.com/SaalimMaliksGH/Eterna.git
+   cd Eterna
    ```
 
 2. **Install dependencies**
@@ -404,7 +404,7 @@ A comprehensive Postman collection (`postman_collection.json`) is included with 
 
 **Import Instructions:**
 1. Open Postman → Click "Import" → Upload `postman_collection.json`
-2. Set `baseUrl` variable to `https://dexflow-realtime.onrender.com` (or `http://localhost:3000` for local)
+2. Set `baseUrl` variable to `https://eterna-dexflow.onrender.com` (or `http://localhost:3000` for local)
 3. Run requests to test API functionality
 
 ### Performance Testing
@@ -542,9 +542,10 @@ This project is licensed under the MIT License.
 
 ## 👤 Author
 
-**Raunak Sarawgi**
+**M Saalim Malik**
 
-- GitHub: [@raunaksarawgi](https://github.com/raunaksarawgi)
+- GitHub: [@SaalimMaliksGH](https://github.com/SaalimMaliksGH)
+- Repository: [Eterna](https://github.com/SaalimMaliksGH/Eterna)
 
 ---
 

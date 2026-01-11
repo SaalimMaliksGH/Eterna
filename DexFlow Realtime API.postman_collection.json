@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "ed68a68d-a7c9-4df1-a0a1-26a9562184e6",
+		"name": "DexFlow Realtime API",
+		"description": "Real-time DEX Aggregator API - Aggregates token data from DexScreener and Jupiter with WebSocket support\n\n🔧 To switch environments:\n- Local: Set baseUrl = http://localhost:3000\n- Production: Set baseUrl = https://dexflow-realtime.onrender.com\n\nChange baseUrl in Collection Variables tab.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31840063"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"health"
+					]
+				},
+				"description": "Check API health status, uptime, and memory usage"
+			},
+			"response": []
+		},
+		{
+			"name": "Get API Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api"
+					]
+				},
+				"description": "Get API information and available endpoints"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (Default)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					]
+				},
+				"description": "Get paginated list of tokens with default parameters (limit=30, sortBy=volume, order=desc)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (Custom Limit)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10",
+							"description": "Number of tokens to return (1-100)"
+						}
+					]
+				},
+				"description": "Get 10 tokens"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (Sort by Volume)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=20&sortBy=volume&order=desc",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "sortBy",
+							"value": "volume",
+							"description": "Sort field: volume, price_change, market_cap, liquidity"
+						},
+						{
+							"key": "order",
+							"value": "desc",
+							"description": "Sort order: asc or desc"
+						}
+					]
+				},
+				"description": "Get tokens sorted by volume in descending order"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (Sort by Price Change)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=15&sortBy=price_change&order=desc&period=24h",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "15"
+						},
+						{
+							"key": "sortBy",
+							"value": "price_change"
+						},
+						{
+							"key": "order",
+							"value": "desc"
+						},
+						{
+							"key": "period",
+							"value": "24h",
+							"description": "Time period: 1h, 24h, or 7d"
+						}
+					]
+				},
+				"description": "Get tokens with highest 24h price changes"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (With Pagination)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=10&cursor=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "cursor",
+							"value": "10",
+							"description": "Pagination cursor (from previous response nextCursor)"
+						}
+					]
+				},
+				"description": "Get next page of tokens using cursor"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (Filter by Volume)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=20&minVolume=1000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "minVolume",
+							"value": "1000",
+							"description": "Minimum volume in SOL"
+						}
+					]
+				},
+				"description": "Get tokens with minimum volume of 1000 SOL"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tokens (1 Hour Period)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=10&period=1h",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "period",
+							"value": "1h"
+						}
+					]
+				},
+				"description": "Get tokens with 1-hour data"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Tokens (SOL)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/search?q=SOL",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "SOL",
+							"description": "Search query (token name or ticker)"
+						}
+					]
+				},
+				"description": "Search for tokens matching 'SOL'"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Tokens (Custom Query)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/search?q=BONK",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "BONK"
+						}
+					]
+				},
+				"description": "Search for tokens matching custom query"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token by Address (Wrapped SOL)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens/So11111111111111111111111111111111111111112",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens",
+						"So11111111111111111111111111111111111111112"
+					]
+				},
+				"description": "Get specific token details by address (Wrapped SOL example)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token by Address (Custom)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens/:tokenAddress",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens",
+						":tokenAddress"
+					],
+					"variable": [
+						{
+							"key": "tokenAddress",
+							"value": "YOUR_TOKEN_ADDRESS_HERE",
+							"description": "Token contract address"
+						}
+					]
+				},
+				"description": "Get specific token by address (replace :tokenAddress with actual address)"
+			},
+			"response": []
+		},
+		{
+			"name": "Performance Test - Rapid Calls",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Note: First call may be slower (cache miss) - run this request 3+ times to see cache performance",
+							"pm.test(\"Response time is reasonable (first call: <2s, cached: <500ms)\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('success');",
+							"    pm.expect(jsonData.success).to.be.true;",
+							"});",
+							"",
+							"// Log response time for performance tracking",
+							"console.log('Response time:', pm.response.responseTime + 'ms');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				},
+				"description": "Test endpoint performance (run multiple times to test caching)"
+			},
+			"response": []
+		},
+		{
+			"name": "Error: Invalid Limit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?limit=150",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "150",
+							"description": "Invalid - limit must be between 1-100"
+						}
+					]
+				},
+				"description": "Test error handling for invalid limit (should return 400)"
+			},
+			"response": []
+		},
+		{
+			"name": "Error: Invalid Sort Field",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens?sortBy=invalid_field",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens"
+					],
+					"query": [
+						{
+							"key": "sortBy",
+							"value": "invalid_field"
+						}
+					]
+				},
+				"description": "Test error handling for invalid sortBy parameter (should return 400)"
+			},
+			"response": []
+		},
+		{
+			"name": "Error: Missing Search Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/search",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"search"
+					]
+				},
+				"description": "Test error handling for missing search query (should return 400)"
+			},
+			"response": []
+		},
+		{
+			"name": "Error: Invalid Token Address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens/invalid",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens",
+						"invalid"
+					]
+				},
+				"description": "Test error handling for invalid token address (should return 400)"
+			},
+			"response": []
+		},
+		{
+			"name": "Error: Token Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/tokens/1111111111111111111111111111111111111111",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"tokens",
+						"1111111111111111111111111111111111111111"
+					]
+				},
+				"description": "Test error handling for non-existent token (should return 404)"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "productionUrl",
+			"value": "https://eterna-dexflow.onrender.com/test-client.html",
+			"type": "string"
+		}
+	]
+}
